@@ -1,0 +1,64 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;	
+}
+
+#gravityCanvas{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+}
+
+#settingsPanel{
+	background-color: black;
+	z-index: 1000;
+	position: fixed;
+	top : 20px;
+	left: -3px;
+	width: 300px;
+	height: 700px;
+	border-style: solid;
+	border-color: #FFFFFF;
+	border-radius: 0px 5px 5px 0px;
+	color: #FFFFFF;
+	text-align: center;
+	-webkit-transition: 0.25s linear;
+    -moz-transition: 0.25s linear;
+    -o-transition: 0.25s linear;
+}
+
+#showPanelButton:hover{
+	background-color: rgb(20, 20, 20);
+}
+
+#showPanelButton{
+	background-color: black;
+	color: white;
+	outline: 0;
+	width: 140px;
+	height: 35px;
+	border-style: solid;
+	border-color: white;
+	border-width: 1px;
+	border-radius: 10px 10px 0px 0px;
+	position: absolute;
+	 -webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+	left:250px;
+	top:70px;
+	font-size: 19px;
+}
+
+.hidePanel{
+  -webkit-transform:translate(-300px,0px);
+  -moz-transform:translate(-300px,0px);
+  -ms-transform:translate(-300px,0px);
+  -o-transform:translate(-300px,0px);
+  transform:translate(-100%,0px); 
+}
+
+
+
+

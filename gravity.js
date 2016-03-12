@@ -1,34 +1,64 @@
-var c = document.getElementById("canvas");
+var c = document.getElementById("gravityCanvas");
 var ctx = c.getContext("2d");
+
+resizeCanvas();
+
 c.addEventListener("mousedown", getClickPosition, false)
 ctx.fillStyle = "#000000";
 
 
 //Universe proprities
-var k = 0.5; //Universal gravitational constant
+var k = 0.8; //Universal gravitational constant
 var step = 10; //The step of the simulation
 
-var trailLength = 1000;
+var trailLength = 100;
 
+var colors = [
+	"#e57373",
+	"#F48FB1",
+	"#BA68C8",
+	"#9575CD",
+	"#7986CB",
+	"#64B5F6",
+	"#4FC3F7",
+	"#4DD0E1",
+	"#4DB6AC",
+	"#81C784",
+	"#AED581",
+	"#DCE775",
+	"#FFF176",
+	"#FFD54F",
+	"#FFB74D",
+	"#FF8A65",
+	"#A1887F",
+	"#90A4AE",
+];
 
 var bodies = [
-	new Body(100, 450, 450,  0, 0),
-//	new Body(0, 450, 150, .3, 0),
-//	new Body(0, 450, 200, .4, 0),
-	new Body(0, 450, 300, .6, 0),
-]
+	new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], 20),
+	new Body(.1, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
+];
  
 
 window.onload = function(){
 	setInterval(drawBodies, 10);
+
+}
+
+function pickColor(){
+	return Math.floor(Math.random() * colors.length);
 }
 
 function drawBodies(){
-	ctx.clearRect(0, 0, c.width, c.height);
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(0, 0, c.width, c.height);
+//	ctx.clearRect(0, 0, c.width, c.height);
 	computePosition();
 	for(var i = 0; i < bodies.length; i++){
+		ctx.fillStyle = bodies[i].color;
+		ctx.strokeStyle = bodies[i].color;
 		ctx.beginPath();
-		ctx.arc(bodies[i].x,bodies[i].y,10,0,2*Math.PI);
+		ctx.arc(bodies[i].x,bodies[i].y,bodies[i].size,0,2*Math.PI);
 		ctx.fill();
 		drawBodyTrail(i);
 	}
@@ -82,6 +112,11 @@ function getClickPosition(e){
 	var vel = Math.sqrt(k * bodies[0].mass / d);
 	var velX = vel * deltaY/d;
 	var velY = vel * deltaX/d;
-	var body = new Body(0, x, y , velX, velY);
+	var body = new Body(0, x, y , velX, velY, colors[pickColor()], 10);
 	bodies.push(body);
+}
+
+function resizeCanvas(){
+	ctx.canvas.width = window.innerWidth;
+	ctx.canvas.height = window.innerHeight;
 }

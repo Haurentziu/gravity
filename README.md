@@ -1,2 +1,2 @@
-# gravity
-N-Body Simulator in JavaScript by Haurentziu :)
+N-Body Simulator by Haurentziu 
+

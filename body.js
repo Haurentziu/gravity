@@ -1,4 +1,4 @@
-function Body(mass, x, y, velocityX, velocityY){
+function Body(mass, x, y, velocityX, velocityY, color, size){
 	this.mass = mass;
 	this.x = x;
 	this.y = y;
@@ -6,7 +6,8 @@ function Body(mass, x, y, velocityX, velocityY){
 	this.velocityY = velocityY;
 	this.positionsX = [];
 	this.positionsY = [];
-	
+	this.color = color;
+	this.size = size;
 }
 
 Body.prototype.addPosition = function(){

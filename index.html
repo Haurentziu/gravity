@@ -1,12 +1,17 @@
 <html>
 	<head>
 		<title>Gravity</title>
+		<link rel = "stylesheet" type = "text/css" href = "stylesheet.css">
 	</head>
 
-	<body>
-		<canvas id = "canvas" width = "900" height = "900" style="border:1px solid #000000;"></canvas>
-				<script src = "body.js"> </script>
-
+	<body onresize = "resizeCanvas();">
+		<canvas id = "gravityCanvas" width = "900" height = "900"></canvas>
+		<script src = "body.js"> </script>
 		<script src = "gravity.js"> </script>
+		<script src = "gui.js"> </script>
+		<div id = "settingsPanel">
+			<h2>Control Panel</h2>
+			<input type = "button" id = "showPanelButton" value = "Hide" onclick="tooglePanel();" />
+		</div>
 	</body>
 </html>
