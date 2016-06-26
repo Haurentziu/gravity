@@ -300,10 +300,10 @@ function rad2deg(angle){
 
 function reset(){
 	bodies = [
-		new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], 18),
-	//	new Body(0, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
+		new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], 20),
+		new Body(0, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
 	];
-	createProtoDisk();
+//	createProtoDisk();
 }
 
 window.onkeydown = function (e) {
