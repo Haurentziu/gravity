@@ -58,6 +58,7 @@ var colors = [
 	"#90A4AE",
 ];
 
+var bodies = [];
 
 window.onload = function(){
 	reset();
@@ -225,23 +226,23 @@ function checkColisions(){
 
 
 function createProtoDisk(){
-	for(var  i = 0; i < 1000; i++){
+	for(var  i = 0; i < 10; i++){
 		var x = Math.random() * c.width;
 		var y = Math.random() * c.height;
 
-	//	var d = Math.sqrt((c.width / 2 - x) * (c.width / 2 - x) + (c.height / 2 - y) * (c.height / 2 - y));
-	//	var alpha = Math.atan2(c.height/2 - y, c.width / 2 - x);
-	//	var vel = Math.sqrt(k * (bodies[0].mass) / d);
+		var d = Math.sqrt((c.width / 2 - x) * (c.width / 2 - x) + (c.height / 2 - y) * (c.height / 2 - y));
+		var alpha = Math.atan2(c.height/2 - y, c.width / 2 - x);
+		var vel = Math.sqrt(k * (bodies[0].mass) / d);
 
-	//	var velX = vel * Math.sin(alpha);
-	//	var velY = -vel * Math.cos(alpha);
+		var velX = vel * Math.sin(alpha);
+		var velY = -vel * Math.cos(alpha);
 
-		var velX = Math.random() / 50 - 1 / 100;
-		var velY = Math.random() / 50 - 1 / 100;
+	//	var velX = Math.random() / 50 - 1 / 100;
+	//	var velY = Math.random() / 50 - 1 / 100;
 
-		var mass = Math.random() * 10;
+		var mass = Math.random() * 5;
 
-		body = new Body(mass, x, y, velX, velY, colors[pickColor()], mass);
+		body = new Body(2, x, y, velX, velY, colors[pickColor()], 10);
 		bodies.push(body);
 	}
 }
@@ -300,8 +301,9 @@ function rad2deg(angle){
 function reset(){
 	bodies = [
 		new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], 18),
-		new Body(0, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
+	//	new Body(0, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
 	];
+	createProtoDisk();
 }
 
 window.onkeydown = function (e) {
