@@ -5,13 +5,21 @@
 	</head>
 
 	<body onresize = "resizeCanvas();">
-		<canvas id = "gravityCanvas" width = "900" height = "900"></canvas>
+		<canvas id = "gravityCanvas" width = "900" height = "900" oncontextmenu="return false;"></canvas>
+		<script type="text/javascript" src="dat.gui.min.js"></script>
 		<script src = "body.js"> </script>
-		<script src = "gui.js"> </script>
 		<script src = "gravity.js"> </script>
-		<div id = "settingsPanel">
-			<h2>Control Panel</h2>
-			<input type = "button" id = "showPanelButton" value = "Hide" onclick="tooglePanel();" />
+		<p id = "fps">FPS: 0 </p>
+		<p id = "number">Number of Bodies: </p>
+
+		<div id = "help">
+			<h4>Controls</h4>
+
+			<ul>
+				<li>Left Mouse Click - create new body</li>
+				<li>Right Mouse Click - center on body</li>
+				<li>SPACE - unselect body</li>
+			</ul>
 		</div>
 	</body>
 </html>
