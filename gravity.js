@@ -59,10 +59,12 @@ var colors = [
 	"#90A4AE",
 ];
 
-var bodies = [];
+var bodies = [
+	new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], computeRadius(100, bodyDensity))
+];
 
 window.onload = function(){
-	reset();
+//	reset();
 	drawBodies();
 
 
@@ -276,7 +278,7 @@ function getUpPosition(e){
 		isPressed = false;
 		var velX = (endX - beginX)/500;
 		var velY = (endY - beginY)/500;
-		var size = Math.pow(bodyMass / bodyDensity, 1/3)
+		size = computeRadius(bodyMass, bodyDensity);
 		body = new Body(bodyMass, beginX - offsetX, beginY - offsetY, velX, velY, colors[pickColor()], size);
 		bodies.push(body);
 	}
@@ -288,6 +290,9 @@ function resizeCanvas(){
 	ctx.canvas.height = window.innerHeight;
 }
 
+function computeRadius(bodyMass, bodyDensity){
+	return Math.pow(bodyMass / bodyDensity, 1/3);
+}
 
 function rad2deg(angle){
 	return angle * 180 / Math.PI;
