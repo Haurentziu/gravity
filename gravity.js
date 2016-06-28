@@ -25,7 +25,8 @@ var cycles = 0;
 var zoom = 1;
 
 var trailLength = 2000;
-var bodyMass = 10;
+var bodyMass = 100;
+var bodyDensity = 0.01;
 
 var beginX, beginY, endX = 0, endY = 0;
 var isPressed = false;
@@ -62,16 +63,8 @@ var bodies = [];
 
 window.onload = function(){
 	reset();
-//	createProtoDisk();
 	drawBodies();
 
-	var obj = {
-		mass: 5,
-
-		timePerStep: 0.5,
-		stepsPerFrame: 15,
-
-	};
 
     var gui = new dat.GUI();
     var objectFolder = gui.addFolder("Object Settings");
@@ -81,6 +74,7 @@ window.onload = function(){
     worldFolder.open();
 
     objectFolder.add(this, "bodyMass").min(0).max(150).step(0.1);
+    objectFolder.add(this, "bodyDensity").min(0).max(1).step(0.001);
 
 	worldFolder.add(this, 'timePerStep').min(0).max(5).step(0.1);
 	worldFolder.add(this, 'stepsPerFrame').min(0).max(30).step(0.1);
@@ -282,7 +276,8 @@ function getUpPosition(e){
 		isPressed = false;
 		var velX = (endX - beginX)/500;
 		var velY = (endY - beginY)/500;
-		body = new Body(bodyMass, beginX - offsetX, beginY - offsetY, velX, velY, colors[pickColor()], 10);
+		var size = Math.pow(bodyMass / bodyDensity, 1/3)
+		body = new Body(bodyMass, beginX - offsetX, beginY - offsetY, velX, velY, colors[pickColor()], size);
 		bodies.push(body);
 	}
 }
@@ -300,8 +295,8 @@ function rad2deg(angle){
 
 function reset(){
 	bodies = [
-		new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], 20),
-		new Body(0, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
+	//	new Body(100, window.innerWidth/2, window.innerHeight/2,  0, 0, colors[0], 20),
+	//	new Body(0, window.innerWidth/2, window.innerHeight/2 - 150, .6, 0, colors[4], 10),
 	];
 //	createProtoDisk();
 }
